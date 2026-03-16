@@ -6,6 +6,7 @@
   <title>markdown-web-viewer</title>
   <link id="theme-style" rel="stylesheet" href="styles/simple.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -224,6 +225,27 @@
       padding-top: 4px;
     }
 
+    /* ===== Mermaid ===== */
+    .mermaid-container {
+      margin: 16px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .mermaid-container svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .mermaid-error {
+      color: #cf222e;
+      font-size: 0.85em;
+    }
+
+    body.dark .mermaid-error {
+      color: #f85149;
+    }
+
     /* ===== Fold State ===== */
     #main.folded #editor {
       display: none;
@@ -349,12 +371,31 @@
       darkToggle.addEventListener('click', function() {
         isDark = !isDark;
         applyDarkMode();
+        updateMermaidTheme();
+        render();
       });
 
       // --- Style switcher ---
       styleSelect.addEventListener('change', function() {
         themeLink.href = 'styles/' + styleSelect.value + '.css';
       });
+
+      // --- Mermaid setup ---
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'default',
+        securityLevel: 'strict'
+      });
+
+      var mermaidCounter = 0;
+
+      function updateMermaidTheme() {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: isDark ? 'dark' : 'default',
+          securityLevel: 'strict'
+        });
+      }
 
       // --- Markdown rendering ---
       marked.setOptions({
@@ -366,9 +407,34 @@
         var text = editor.value;
         if (!text.trim()) {
           preview.innerHTML = '<p class="preview-placeholder">Your rendered markdown will appear here</p>';
-        } else {
-          preview.innerHTML = marked.parse(text);
+          return;
         }
+
+        preview.innerHTML = marked.parse(text);
+
+        // Find mermaid code blocks and render them
+        var codeBlocks = preview.querySelectorAll('code.language-mermaid');
+        var mermaidPromises = [];
+
+        codeBlocks.forEach(function(codeEl) {
+          var pre = codeEl.parentElement;
+          var source = codeEl.textContent;
+          var container = document.createElement('div');
+          container.className = 'mermaid-container';
+          var id = 'mermaid-' + (mermaidCounter++);
+
+          pre.parentNode.replaceChild(container, pre);
+
+          mermaidPromises.push(
+            mermaid.render(id, source).then(function(result) {
+              container.innerHTML = result.svg;
+            }).catch(function() {
+              container.innerHTML = '<pre class="mermaid-error"><code>' +
+                source.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+                '</code></pre>';
+            })
+          );
+        });
       }
 
       editor.addEventListener('input', render);
