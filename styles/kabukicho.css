@@ -1,0 +1,390 @@
+/*
+ * Kabukicho Theme — Neon-soaked, vibrant Markdown styling
+ * Inspired by the electric glow of Tokyo's Kabukicho district
+ * Targets #preview content only
+ */
+
+/* ===== Typography ===== */
+#preview {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  word-wrap: break-word;
+}
+
+/* ===== Headings ===== */
+#preview h1,
+#preview h2,
+#preview h3,
+#preview h4,
+#preview h5,
+#preview h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+#preview h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  color: #ff2d7b;
+  text-shadow:
+    0 0 7px rgba(255, 45, 123, 0.6),
+    0 0 20px rgba(255, 45, 123, 0.3),
+    0 0 42px rgba(255, 45, 123, 0.15);
+  border-bottom: 2px solid rgba(255, 45, 123, 0.3);
+}
+
+#preview h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  color: #00e5ff;
+  text-shadow:
+    0 0 7px rgba(0, 229, 255, 0.5),
+    0 0 20px rgba(0, 229, 255, 0.25);
+  border-bottom: 2px solid rgba(0, 229, 255, 0.25);
+}
+
+#preview h3 {
+  font-size: 1.25em;
+  color: #ffe14d;
+  text-shadow:
+    0 0 7px rgba(255, 225, 77, 0.4),
+    0 0 16px rgba(255, 225, 77, 0.2);
+}
+
+#preview h4 {
+  font-size: 1em;
+  color: #c084fc;
+  text-shadow:
+    0 0 6px rgba(192, 132, 252, 0.4),
+    0 0 14px rgba(192, 132, 252, 0.2);
+}
+
+#preview h5 {
+  font-size: 0.875em;
+  color: #22d3ee;
+  text-shadow:
+    0 0 5px rgba(34, 211, 238, 0.35);
+}
+
+#preview h6 {
+  font-size: 0.85em;
+  color: #fb923c;
+  text-shadow:
+    0 0 5px rgba(251, 146, 60, 0.35);
+}
+
+#preview h1:first-child,
+#preview h2:first-child,
+#preview h3:first-child {
+  margin-top: 0;
+}
+
+/* Light mode: tone down glow slightly */
+body:not(.dark) #preview h1 {
+  color: #d91a63;
+  text-shadow:
+    0 0 5px rgba(217, 26, 99, 0.3),
+    0 0 12px rgba(217, 26, 99, 0.12);
+}
+
+body:not(.dark) #preview h2 {
+  color: #0097a7;
+  text-shadow:
+    0 0 5px rgba(0, 151, 167, 0.25);
+}
+
+body:not(.dark) #preview h3 {
+  color: #c8a415;
+  text-shadow:
+    0 0 4px rgba(200, 164, 21, 0.2);
+}
+
+body:not(.dark) #preview h4 {
+  color: #9333ea;
+  text-shadow: 0 0 4px rgba(147, 51, 234, 0.2);
+}
+
+/* ===== Paragraphs & Text ===== */
+#preview p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+#preview strong {
+  font-weight: 700;
+  color: #ff6eb4;
+}
+
+body:not(.dark) #preview strong {
+  color: #d91a63;
+}
+
+#preview em {
+  font-style: italic;
+  color: #7dd3fc;
+}
+
+body:not(.dark) #preview em {
+  color: #0284c7;
+}
+
+#preview del {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* ===== Links ===== */
+#preview a {
+  color: #ff2d7b;
+  text-decoration: none;
+  text-shadow: 0 0 6px rgba(255, 45, 123, 0.35);
+  transition: text-shadow 0.2s ease, color 0.2s ease;
+}
+
+#preview a:hover {
+  color: #ff6eb4;
+  text-shadow:
+    0 0 8px rgba(255, 110, 180, 0.6),
+    0 0 20px rgba(255, 110, 180, 0.3);
+  text-decoration: none;
+}
+
+body:not(.dark) #preview a {
+  color: #d91a63;
+  text-shadow: 0 0 3px rgba(217, 26, 99, 0.15);
+}
+
+body:not(.dark) #preview a:hover {
+  color: #ff2d7b;
+  text-shadow: 0 0 6px rgba(255, 45, 123, 0.3);
+}
+
+/* ===== Lists ===== */
+#preview ul,
+#preview ol {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-left: 2em;
+}
+
+#preview li {
+  margin-bottom: 4px;
+}
+
+#preview li + li {
+  margin-top: 4px;
+}
+
+#preview li > p {
+  margin-top: 16px;
+}
+
+#preview ul ul,
+#preview ul ol,
+#preview ol ul,
+#preview ol ol {
+  margin-bottom: 0;
+}
+
+#preview li::marker {
+  color: #00e5ff;
+}
+
+body:not(.dark) #preview li::marker {
+  color: #0097a7;
+}
+
+/* ===== Task Lists ===== */
+#preview input[type="checkbox"] {
+  margin-right: 6px;
+  vertical-align: middle;
+  accent-color: #ff2d7b;
+}
+
+/* ===== Blockquotes ===== */
+#preview blockquote {
+  margin: 0 0 16px 0;
+  padding: 12px 16px;
+  border-left: 4px solid #c084fc;
+  background: rgba(192, 132, 252, 0.06);
+  border-radius: 0 6px 6px 0;
+  color: inherit;
+}
+
+body.dark #preview blockquote {
+  background: rgba(192, 132, 252, 0.08);
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.06);
+}
+
+body:not(.dark) #preview blockquote {
+  border-left-color: #9333ea;
+  background: rgba(147, 51, 234, 0.04);
+}
+
+#preview blockquote > :first-child {
+  margin-top: 0;
+}
+
+#preview blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* ===== Code ===== */
+#preview code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.875em;
+  background: rgba(255, 45, 123, 0.1);
+  border: 1px solid rgba(255, 45, 123, 0.2);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  color: #ff6eb4;
+}
+
+body:not(.dark) #preview code {
+  background: rgba(217, 26, 99, 0.06);
+  border-color: rgba(217, 26, 99, 0.15);
+  color: #d91a63;
+}
+
+#preview pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 0.875em;
+  line-height: 1.5;
+  background: #0a0a1a;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow:
+    0 0 8px rgba(0, 229, 255, 0.06),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+body:not(.dark) #preview pre {
+  background: #1a1a2e;
+  border-color: rgba(0, 151, 167, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+#preview pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: #e0e0ff;
+  box-shadow: none;
+}
+
+body:not(.dark) #preview pre code {
+  color: #d0d0f0;
+}
+
+/* ===== Horizontal Rule ===== */
+#preview hr {
+  border: none;
+  height: 2px;
+  margin: 24px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ff2d7b,
+    #00e5ff,
+    #ffe14d,
+    #c084fc,
+    #ff2d7b,
+    transparent
+  );
+  opacity: 0.6;
+}
+
+body.dark #preview hr {
+  opacity: 0.8;
+  box-shadow: 0 0 10px rgba(255, 45, 123, 0.15);
+}
+
+/* ===== Tables ===== */
+#preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0;
+  margin-bottom: 16px;
+  overflow: auto;
+  font-size: 0.9em;
+}
+
+#preview table th,
+#preview table td {
+  padding: 8px 13px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  text-align: left;
+}
+
+body:not(.dark) #preview table th,
+body:not(.dark) #preview table td {
+  border-color: rgba(0, 151, 167, 0.25);
+}
+
+#preview table th {
+  font-weight: 700;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  text-shadow: 0 0 4px rgba(0, 229, 255, 0.2);
+}
+
+body:not(.dark) #preview table th {
+  color: #0097a7;
+  background: rgba(0, 151, 167, 0.06);
+  text-shadow: none;
+}
+
+#preview table tr:nth-child(2n) {
+  background: rgba(0, 229, 255, 0.03);
+}
+
+body:not(.dark) #preview table tr:nth-child(2n) {
+  background: rgba(0, 151, 167, 0.03);
+}
+
+/* ===== Definition Lists ===== */
+#preview dt {
+  font-weight: 700;
+  margin-top: 16px;
+  color: #ffe14d;
+}
+
+body:not(.dark) #preview dt {
+  color: #c8a415;
+}
+
+#preview dd {
+  margin-left: 2em;
+  margin-bottom: 8px;
+}
+
+/* ===== Keyboard Input ===== */
+#preview kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.8em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 1.4;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  text-shadow: 0 0 4px rgba(0, 229, 255, 0.3);
+}
+
+body:not(.dark) #preview kbd {
+  color: #0097a7;
+  background: rgba(0, 151, 167, 0.06);
+  border-color: rgba(0, 151, 167, 0.25);
+  text-shadow: none;
+}
